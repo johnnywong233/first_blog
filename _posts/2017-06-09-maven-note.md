@@ -222,8 +222,45 @@ Test范围依赖 在一般的 编译和运行时都不需要，它们只有在�
 5.System（系统）
 system范围依赖与provided类似，但是必须显式的提供一个对于本地系统中JAR文件的路径.这么做是为了允许基于本地对象编译，而这些对象是系统类库的一部分.这样的构件应该是一直可用的，Maven也不会在仓库中去寻找它.如果你将一个依赖范围设置成系统范围，你必须同时提供一个systemPath元素.注意该范围是不推荐使用的（你应该一直尽量去从公共或定制的Maven仓库中引用依赖）.
 
-### 11.
+### 11.一方库、二方库、三方库
+一方库：本工程中的相互依赖;
 
+二方库：公司内部的依赖库，一般指公司内部的其他项目发布的jar包;
+
+三方库：公司之外的开源库， 比如apache、ibm、google等发布的依赖.
+
+### 12.mvn帮助插件
+```help:active-profiles```
+列出当前构建中活动的Profile（项目的，用户的，全局的）。
+
+```help:effective-pom```
+显示当前构建的实际POM，包含活动的Profile。
+
+```help:effective-settings```
+打印出项目的实际settings, 包括从全局的settings和用户级别settings继承的
+配置。
+
+```help:describe```
+描述插件的属性。它不需要在项目目录下运行。但是你必须提供你想要描述插件
+的 groupId 和 artifactId。
+eg: ```mvn help:describe -Dplugin=assembly```
+
+### 13. Maven中的依赖关系查看
+```mvn dependency:resolve```
+
+### 14.Pom文件配置忽略测试失败
+当Maven遇到一个失败的单元测试/测试案例，它默认的行为是停止当前的构建。如果希望继续构建项目，即使Surefire插件遇到失败的单元测试，设置Surefire的**testFailureIgnore**这个配置属性为true。
+```
+<plugin>
+	<groupId>org.apache.maven.plugins</groupId>
+	<artifactId>maven-surefire-plugin</artifactId>
+	<configuration>
+		<testFailureIgnore>true</testFailureIgnore>
+	</configuration>
+</plugin>
+```
+
+### 15. 
 
 
 
