@@ -260,7 +260,15 @@ eg: ```mvn help:describe -Dplugin=assembly```
 </plugin>
 ```
 
-### 15. 
+### 15. 阿里云aliyun搭建的maven私服
+```xml
+<mirror>
+	<id>aliyun</id>
+	<mirrorOf>aliyun</mirrorOf>
+	<name>Human Readable Name for this Mirror.</name>
+	<url>http://maven.aliyun.com/nexus/content/groups/public</url>
+</mirror>
+```
 
 
 

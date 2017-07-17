@@ -95,3 +95,6 @@ then
 echo "内容" |mail -s "" dst@example.com
 fi
 ```
+
+## 
+shell内置一系列操作符号，可以达到sed, awk类似效果，使用内部操作符会省略启动外部程序等时间

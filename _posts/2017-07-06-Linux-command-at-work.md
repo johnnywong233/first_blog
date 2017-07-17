@@ -24,6 +24,7 @@ wget ftp://cmfshare:cmfshare@16.155.193.1/home/README.md
 //查找目录下面的所有jar包是否含有某个特定的class类*.class
 ```
 find . -name "*.jar"|awk '{print "jar -tvf "$1}'|sh|grep XMLInputFactory
+
 find . -name "*.jar"|awk '{print "jar -tvf "$1}'|sh|grep JsonStreamFactory
 ```
 实例图片：
@@ -31,6 +32,35 @@ find . -name "*.jar"|awk '{print "jar -tvf "$1}'|sh|grep JsonStreamFactory
  ![](img/find_class_in_jar.png)
 
 //mkdir -p: 创建目录, -p(parent)创建目录，若无父目录，则创建;
+
+//sed文本替换
+
+sed -i 's/src/des/g' some.file
+
+sed -i 's/@ADMIN@/admin/g' demo-postgres.yaml
+
+//在具体行号前加一行内容
+
+sed -i 'N;4addpdf' a.txt
+
+//在具体行号前或后加一行内容，值得注意的是，"eepdf"添加到第三行
+sed -i 'N;4ieepdf' a.txt
+
+即，```sed -i 'N;1ieepdf' a.txt```是不起作用的。
+
+//在具体行号前或后加一行内容，值得注意的是，"abc"添加到第四行
+sed -i '4iabc' demo.txt
+
+
+//echo追加
+
+```
+echo "append content" >> demo.txt
+
+echo "overwriten content" > demo.txt
+```
+
+一个问题，单纯的echo命令是不是不能实现文本的指定行追加内容？
 
 
 

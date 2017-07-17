@@ -20,6 +20,8 @@ Ctrl + Shift + J：整合两行；
 
 Ctrl + Shift + F：全局查找；
 
+Ctrl + F12: 相当于Eclipse的快捷键Ctrl + O, 打开方法；
+
 Ctrl + D：复制光标所在行；
 
 Ctrl + X：删除某一行，同时具有剪切的功能，然后可以使用Ctrl + V；
@@ -59,7 +61,7 @@ Intellij IDea IDE 修复文件打开方式：settings --> Editor -->File Types
 
 ![这里写图片描述](http://img.blog.csdn.net/20170624095230409?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbG9uZWx5bWFub250aGV3YXk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
-###3. IDEA目录
+### 3. IDEA目录
 #### 安装目录介绍
 如图：
 
@@ -99,3 +101,78 @@ system目录是IDEA 系统文件目录，是IDEA 与开发项目一个桥梁目�
 **不推荐**。默认情况下，鼠标点哪里，光标就定位到哪里；现在想要实现，鼠标点哪里，光标就定位到当前行的末尾；
 
 配置：file - settings - Editor面板中的Virtual Space组中的 Allow placement of caret after end of line配置项勾掉即可;
+
+### 5. Alt + Enter import出问题
+问题描述，.java源文件需要引用import java.lang.reflect.Field;类，但是Alt + Enter快捷键不起作用，没有提示这个类。
+
+重启IntelliJ、导入之前导出的设置文件setting.jar、更改import设置都不行，最后之后清缓存重启，问题解决。妈蛋。
+
+### 6. 设置排除提示导入的包
+打开settings > Editor > General > Auto Import, 可以在这里添加一些包，让这些包从自动导入的提示中排除出去，如com.sun。（每次要导入List时都会出来捣乱）
+
+### 7. 设置取消导包时自动变成import .*
+关于导入包，IntelliJ IDEA的默认设置是当同一个包下面的导入个数超过一个定值时，变成import java.util.*;，但是这并不是一个好的开发习惯。
+
+取消设置：
+
+打开settings > Editor > Code Style > Java > Scheme Default > Imports
+
+- 将 Class count to use import with * 改为 99(导入同一个包的类超过这个数值自动变为*)
+
+- 将 Names count to use static import with * 改为 99；(静态导入)
+
+- 将 Package to Use import with * 删掉默认的这两个包(不管使用多少个类，只要在这个列表里都会变为 * )
+
+PS：Scheme Default 是针对全局的，你也可以只修改某个Project的
+
+### 8. 显示行号
+Settings->Editor->Appearance标签项，勾选Show line numbers  
+
+### 9. IntelliJ导入Gradle项目报错
+报错信息:
+```
+Error:Could not GET 'http://134.32.32.219:8081/nexus/content/groups/public/org/springframework/boot/spring-boot-gradle-plugin/1.4.0.RELEASE/spring-boot-gradle-plugin-1.4.0.RELEASE.pom'. Received status code 503 from server: Service Unavailable
+```
+
+如图：
+
+![](/img/IntelliJ_Gradle.png)
+
+大意是需要设置 HTTP proxy. How？
+
+在build.gradle同级目录touch gradle.properties文件，添加如下内容:
+```
+systemProp.http.proxyHost=web-proxy.atl.*.com
+
+systemProp.http.proxyPort=8080
+
+systemProp.http.proxyUser=userid
+
+systemProp.http.proxyPassword=password
+
+systemProp.http.nonProxyHosts=*.nonproxyrepos.com|localhost
+```
+类似地，如果需要设置HTTPS proxy，将上面的http改成https即可。
+
+实际上，之前在build.gradle目录下执行命令```gradle clean build bootRun```，报错：
+
+```
+Error resolving plugin [id: 'cn.bestwu.propdeps', version: '0.0.10']
+> Could not GET 'https://plugins.gradle.org/api/gradle/3.4/plugin/use/cn.bestwu.propdeps/0.0.10'.
+> Connect to plugins.gradle.org:443 [plugins.gradle.org/104.16.174.166, plugins.gradle.org/104.16.171.166, plugins.gradle.org/104.16.172.166, plugins.gradle.
+org/104.16.175.166, plugins.gradle.org/104.16.173.166] failed: Connection timed out: connect
+```
+
+也是同样的解决方法。
+
+### 10. IntelliJ IDEA使用spring-boot-devtools热部署无效的解决方案
+
+和Eclipse不同的是，Eclipse设置自动编译之后，修改类并保存会触发自动编译，而IDEA在非RUN或DEBUG情况下才会自动编译（前提是你已经设置Auto-Compile）。So how？
+
+首先如图：
+![](/img/IntelliJ_compiler_setting.png)
+
+IDEA设置里面(Ctrl + Alt + S 快捷键打开settings——Build, Execution, Deployment——Compiler——Make project automatically)必须打勾.
+
+然后快捷键 Shift+Ctrl+Alt+/，选择Registry，
+找到```compiler.automake.allow.when.app.running```选项打勾; 然后以后修改css,js,java类文件，IDEA就会自动make。
