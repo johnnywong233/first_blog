@@ -170,7 +170,7 @@ org/104.16.175.166, plugins.gradle.org/104.16.173.166] failed: Connection timed 
 和Eclipse不同的是，Eclipse设置自动编译之后，修改类并保存会触发自动编译，而IDEA在非RUN或DEBUG情况下才会自动编译（前提是你已经设置Auto-Compile）。So how？
 
 首先如图：
-![](/img/IntelliJ_compiler_setting.png)
+![](https://github.com/johnnywong233/first_blog/tree/gh-pages/_posts/img/IntelliJ_compiler_setting.png)
 
 IDEA设置里面(Ctrl + Alt + S 快捷键打开settings——Build, Execution, Deployment——Compiler——Make project automatically)必须打勾.
 
