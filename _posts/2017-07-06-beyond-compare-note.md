@@ -16,7 +16,7 @@ linux 扩展的[官网下载地址](http://www.scootersoftware.com/download.php?
 
 二：选择中文版的下载导入
 
-![这里写图片描述](http://img.blog.csdn.net/20170628220719898?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbG9uZWx5bWFub250aGV3YXk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![](http://img.blog.csdn.net/20170628220719898?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbG9uZWx5bWFub250aGV3YXk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 类似这样以bcpkg为文件后缀名的。
 进入页面点 Download All就行（但有时候点Download All下载的是空的扩展文件，这时候需要勾选想要使用的扩展再点Download Marked才可以）。
@@ -30,7 +30,7 @@ linux 扩展的[官网下载地址](http://www.scootersoftware.com/download.php?
 1. 找到这个目录：BeyondCompare\Helpers\Java； 
 2. 编辑该目录下的 CLASS_to_JAVA.bat 文件，修改其内容为“Helpers\Java\jad.exe -8 -p %1 > %2”，其中的-8参数就是将Unicode字符转换为ANSI字符串的关键参数；
 3. 打开beyondcompare，工具->文件格式，按下图修改：
-![这里写图片描述](http://img.blog.csdn.net/20170628220852057?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbG9uZWx5bWFub250aGV3YXk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast) 
+![](http://img.blog.csdn.net/20170628220852057?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbG9uZWx5bWFub250aGV3YXk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast) 
 4. 重启beyondcompare即可。
 
 ### 3. BC比较远程服务器文件
@@ -38,7 +38,7 @@ linux 扩展的[官网下载地址](http://www.scootersoftware.com/download.php?
 
 BC工具支持ftp，sftp协议的。因此只需要在路径输入远程机器的路径就可以。
 例如我现在需要增量发布代码，但是很多时候容易漏掉文件什么的。左侧的路径选择本机的编译好的类目录，右侧远程主机。
-![这里写图片描述](http://img.blog.csdn.net/20170628215018821?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbG9uZWx5bWFub250aGV3YXk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![](http://img.blog.csdn.net/20170628215018821?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbG9uZWx5bWFub250aGV3YXk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 关于远程主机的路径写法：
 ```sftp://root@<ip>//app/tomcat-7.0.70/webapps/ROOT/WEB-INF/classes```
 路径分为3个部分：
@@ -63,7 +63,7 @@ Eclipse自带的文本比较工具太差劲，在代码提交的时候的一个�
 然后就是老生常谈的Eclipse安装插件了；不清楚的话，上面的[下载网站](http://beyondcvs.sourceforge.net/)也有说明。
 
 装好之后，打开Eclipse，选择菜单 Window -> Preferences，弹出窗口，在左边External Tools下面就会多出Beyond Compare，在右边直接按Browse...按钮，选择Beyond Compare的安装位置：
-![这里写图片描述](http://img.blog.csdn.net/20170628221322125?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbG9uZWx5bWFub250aGV3YXk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![](http://img.blog.csdn.net/20170628221322125?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbG9uZWx5bWFub250aGV3YXk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 之后，比较的时候就可以用Beyond Compare。
 
 ### 5. BC实用发布功能
@@ -71,14 +71,14 @@ Eclipse自带的文本比较工具太差劲，在代码提交的时候的一个�
 增量发布有的时候真的是场噩梦。首先要了解开发版本和服务端的版本，各种文件比对。对我来说，更多时候面对的是各种jar包。之前都是解包替换再压包，好不麻烦。Beyond Compare可以让你解放出来。
   ● 文件比较和替换 
 比如，Maven工程下有个target目录，默认情况下里面包含最新编译好的class文件。如图： 
-![这里写图片描述](http://img.blog.csdn.net/20170628212725134?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbG9uZWx5bWFub250aGV3YXk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![](http://img.blog.csdn.net/20170628212725134?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbG9uZWx5bWFub250aGV3YXk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 上图的classes目录和被打成jar包的结构是一致的。*.jar为线上服务器版本的jar。 
 这时候要对工程做增量发布，则选中两个文件，右键点击比较。
-![这里写图片描述](http://img.blog.csdn.net/20170628212951053?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbG9uZWx5bWFub250aGV3YXk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![](http://img.blog.csdn.net/20170628212951053?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbG9uZWx5bWFub250aGV3YXk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 关注红色部分，即是差异所在。
-![这里写图片描述](http://img.blog.csdn.net/20170628213133336?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbG9uZWx5bWFub250aGV3YXk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![](http://img.blog.csdn.net/20170628213133336?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbG9uZWx5bWFub250aGV3YXk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 选中要更新文件，在右键菜单里选择”复制到左侧”。完成更新。
-![这里写图片描述](http://img.blog.csdn.net/20170628213227858?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbG9uZWx5bWFub250aGV3YXk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![](http://img.blog.csdn.net/20170628213227858?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbG9uZWx5bWFub250aGV3YXk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 再回过头看看jar包，已经修改日期已经改变，可以确认jar包已更新。剩下的就是重新发布到服务器。
-![这里写图片描述](http://img.blog.csdn.net/20170628213314229?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbG9uZWx5bWFub250aGV3YXk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![](http://img.blog.csdn.net/20170628213314229?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbG9uZWx5bWFub250aGV3YXk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 上面的操作不仅对jar包生效，对war包和zip包也是有效的。

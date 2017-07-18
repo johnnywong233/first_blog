@@ -29,9 +29,9 @@ import static org.mockito.Matchers.argThat;//来自mockito-all.jar
 
 java.lang.NoSuchMethodError: org.mockito.internal.progress.ThreadSafeMockingProgress.mockingProgress()Lorg/mockito/internal/progress/MockingProgress;
 以及java.lang.NoSuchMethodError: org.mockito.internal.matchers.InstanceOf.<init>(Ljava/lang/Class;Ljava/lang/String;)V
- http://stackoverflow.com/questions/31962003/mockito-test-gives-no-such-method-error-when-run-as-junit-test-but-when-jars-are
+[参考](http://stackoverflow.com/questions/31962003/mockito-test-gives-no-such-method-error-when-run-as-junit-test-but-when-jars-are)
 
-![这里写图片描述](http://img.blog.csdn.net/20170623010055831?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbG9uZWx5bWFub250aGV3YXk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![](http://img.blog.csdn.net/20170623010055831?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbG9uZWx5bWFub250aGV3YXk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 Eclipse快捷键Ctrl+ Shift +T, 发现当前classpath下面有太多jar包包含这个类ThreadSafeMockingProgress。由于生产项目使用的mockito是mockito-core，一开始在pom.xml文件中把mockito-all注释，发现导致很多unresolved symbol报错，意思是没有导入相应的jar依赖。于是转换方向，注释mockito-core，使用mockito-all。问题解决。
 
@@ -40,10 +40,11 @@ Eclipse快捷键Ctrl+ Shift +T, 发现当前classpath下面有太多jar包包含
 ## 3. apache poi jar包解析excel
 在使用apache的poi这个jar包做excel表格的解析和生成的demo程序时。遇到报错信息：
 java.lang.IllegalAccessError: tried to access method org.apache.poi.util.POILogger.log from class org.apache.poi.openxml4j.opc.ZipPackage
-参考https://stackoverflow.com/questions/34630209/java-lang-illegalaccesserror-tried-to-access-method-org-apache-poi-util-poilogg
+[参考](https://stackoverflow.com/questions/34630209/java-lang-illegalaccesserror-tried-to-access-method-org-apache-poi-util-poilogg)
+
 最开始pom文件只有两处使用到poi相关的dependency：
 
-```
+```xml
 <dependency>
 	<groupId>org.apache.poi</groupId>
 	<artifactId>poi</artifactId>
@@ -64,7 +65,7 @@ java.lang.IllegalAccessError: tried to access method org.apache.poi.util.POILogg
  
 把```<artifactId>org.apache.poi.xwpf.converter.core</artifactId>```注释掉，然后添加
 
-```
+```xml
 <dependency>
     <groupId>org.apache.poi</groupId>
     <artifactId>poi-ooxml</artifactId>
@@ -86,7 +87,7 @@ java.lang.IllegalAccessError: tried to access method org.apache.poi.util.POILogg
  
 多次百度才发现还需要添加一个jar的dependency：
 
-```
+```xml
 <dependency>
     <groupId>org.apache.poi</groupId>
     <artifactId>ooxml-schemas</artifactId>
@@ -98,7 +99,7 @@ ooxml-schemas和poi-ooxml-schemas是两个不同的jar包。
 
 最后需要使用的apeche的poi jar包如下：
 
-```
+```xml
 <dependency>
 	<groupId>org.apache.poi</groupId>
 	<artifactId>poi</artifactId>
@@ -129,22 +130,26 @@ ooxml-schemas和poi-ooxml-schemas是两个不同的jar包。
 ##4.try……catch……finally的改进
 相信你我一定写过很多次这种重复的“无意义”的代码：
 
-```
-BufferedOutputStream bos = null;
-BufferedInputStream bis = null;
-try {
-    bos = new BufferedOutputStream(new FileOutputStream(storefile));
-    bis = new BufferedInputStream(inputStream);
-    int c;
-    while((c= bis.read())!=-1){
-        bos.write(c);
-        bos.flush();
+```java
+public class Demo {
+    public void demo() {
+        BufferedOutputStream bos = null;
+        BufferedInputStream bis = null;
+        try {
+            bos = new BufferedOutputStream(new FileOutputStream(storefile));
+            bis = new BufferedInputStream(inputStream);
+            int c;
+            while ((c = bis.read()) != -1) {
+                bos.write(c);
+                bos.flush();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            IOUtils.closeQuietly(bos);
+            IOUtils.closeQuietly(bis);
+        }
     }
-} catch (IOException e) {
-    e.printStackTrace();
-}finally{
-    bos.close();
-    bis.close();
 }
 ```
 
@@ -152,22 +157,26 @@ try {
 
 借助于IntelliJ IDEA智能IDE的提示：
 
-![这里写图片描述](http://img.blog.csdn.net/20170626232235769?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbG9uZWx5bWFub250aGV3YXk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![](http://img.blog.csdn.net/20170626232235769?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbG9uZWx5bWFub250aGV3YXk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 敲下IDEA最强大的快捷键：Alt + Enter
 
 变成这样：
 
-```
-try (BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(storefile));
-     BufferedInputStream bis = new BufferedInputStream(inputStream)) {
-    int c;
-    while ((c = bis.read()) != -1) {
-        bos.write(c);
-        bos.flush();
+```java
+public class Demo {
+    public void demo() {
+        try (BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(storefile));
+             BufferedInputStream bis = new BufferedInputStream(inputStream)) {
+            int c;
+            while ((c = bis.read()) != -1) {
+                bos.write(c);
+                bos.flush();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
-} catch (IOException e) {
-    e.printStackTrace();
 }
 ```
 
@@ -205,7 +214,7 @@ context: AbstractTransport.Context[threadId=5,scramble=@hmiJr"L<'L**6oMt}<O,prot
 ### 6. IDEA提示web.xml文件listener-class is not allowed here
 在使用IDEA开发web项目时，有时候web.xml文件中会有很多标签被标为红色的字体，提示listener-class is not allowed here。比如：
 
-```
+```xml
 <init-param>
 <param-name>contextConfigLocation</param-name>
 <param-value>classpath:</param-value> （不是系统默认WEB-INF时，需用classpath*：）
@@ -214,7 +223,7 @@ context: AbstractTransport.Context[threadId=5,scramble=@hmiJr"L<'L**6oMt}<O,prot
 
 替换```<web-app>```实例引用模板信息:
 
-```
+```xml
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 		 xmlns="http://java.sun.com/xml/ns/javaee"
          xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
@@ -234,7 +243,7 @@ context: AbstractTransport.Context[threadId=5,scramble=@hmiJr"L<'L**6oMt}<O,prot
 
 将web.xml头部内容
 
-```
+```xml
 <web-app version="2.4"
 xmlns="htt://java.sun.com/xml/ns/j2ee" xmns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
@@ -243,7 +252,7 @@ xmlns="htt://java.sun.com/xml/ns/j2ee" xmns:xsi="http://www.w3.org/2001/XMLSchem
 
 替换为
 
-```
+```xml
 <web-app xmlns="http://java.sun.com/xml/ns/javaee" version="2.5">
 ```
 

@@ -42,6 +42,7 @@ old GWT (1.5) created this dir
 .gwt-tmp/
 
 ### Maven.gitignore
+```git
 target/
 pom.xml.tag
 pom.xml.releaseBackup
@@ -51,6 +52,7 @@ release.properties
 dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
+```
 
 ### Java.gitignore
 *.class
@@ -106,6 +108,7 @@ Cache of project
 .gradletasknamecache
 
 ### JBoss.gitignore
+```git
 jboss/server/all/deploy/project.ext
 jboss/server/default/deploy/project.ext
 jboss/server/minimal/deploy/project.ext
@@ -124,6 +127,7 @@ jboss/server/minimal/work/**/*
 
 deployed package files #
 *.DEPLOYED
+```
 
 ### Python.gitignore
 Byte-compiled / optimized / DLL files

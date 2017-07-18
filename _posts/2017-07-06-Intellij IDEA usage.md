@@ -50,22 +50,22 @@ Alt + F12：Terminal工具窗口
 
 
 ### 2. IDEA文件打开方式
-Intellij IDea IDE 修复文件打开方式：settings --> Editor -->File Types
+IntelliJ IDea IDE 修复文件打开方式：settings --> Editor -->File Types
 比如将.propertites文件用yml的方式打开，则会提示红点。
 
 那要想去掉，回归默认方式，则
 
-![这里写图片描述](http://img.blog.csdn.net/20170624095134465?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbG9uZWx5bWFub250aGV3YXk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![](http://img.blog.csdn.net/20170624095134465?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbG9uZWx5bWFub250aGV3YXk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 去掉即可：
 
-![这里写图片描述](http://img.blog.csdn.net/20170624095230409?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbG9uZWx5bWFub250aGV3YXk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![](http://img.blog.csdn.net/20170624095230409?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbG9uZWx5bWFub250aGV3YXk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 ### 3. IDEA目录
 #### 安装目录介绍
 如图：
 
-![](/img/IDEA_bin.png)
+![](https://github.com/johnnywong233/first_blog/raw/gh-pages/_posts/img/IDEA_bin.png)
 
 IDEA 的安装目录并不复杂，上图为最常改动的 bin 目录，经常会改动的文件或是必须介绍就是如图红色框中的几个。
 
@@ -87,7 +87,7 @@ idea.properties：属性配置文件，没有 32 位和 64 位之分，修改原
 #### 配置目录介绍
 如图：
 
-![](/img/IDEA_user.png)
+![](https://github.com/johnnywong233/first_blog/raw/gh-pages/_posts/img/IDEA_user.png)
 
 config目录是IDEA 个性化化配置目录，或者说是整个 IDE 设置目录。安装新版本的 IntelliJ IDEA 会自动扫描硬盘上的旧配置目录，指的就是该目录。这个目录主要记录：IDE 主要配置功能、自定义的代码模板、自定义的文件模板、自定义的快捷键、Project 的 tasks 记录等等个性化的设置。
 
@@ -136,20 +136,16 @@ Error:Could not GET 'http://134.32.32.219:8081/nexus/content/groups/public/org/s
 
 如图：
 
-![](/img/IntelliJ_Gradle.png)
+![](https://github.com/johnnywong233/first_blog/raw/gh-pages/_posts/img/IntelliJ_Gradle.png)
 
 大意是需要设置 HTTP proxy. How？
 
 在build.gradle同级目录touch gradle.properties文件，添加如下内容:
 ```
 systemProp.http.proxyHost=web-proxy.atl.*.com
-
 systemProp.http.proxyPort=8080
-
 systemProp.http.proxyUser=userid
-
 systemProp.http.proxyPassword=password
-
 systemProp.http.nonProxyHosts=*.nonproxyrepos.com|localhost
 ```
 类似地，如果需要设置HTTPS proxy，将上面的http改成https即可。
@@ -169,10 +165,13 @@ org/104.16.175.166, plugins.gradle.org/104.16.173.166] failed: Connection timed 
 
 和Eclipse不同的是，Eclipse设置自动编译之后，修改类并保存会触发自动编译，而IDEA在非RUN或DEBUG情况下才会自动编译（前提是你已经设置Auto-Compile）。So how？
 
-首先如图：
+首先如图:
+
 ![](https://github.com/johnnywong233/first_blog/raw/gh-pages/_posts/img/IntelliJ_compiler_setting.png)
 
 IDEA设置里面(Ctrl + Alt + S 快捷键打开settings——Build, Execution, Deployment——Compiler——Make project automatically)必须打勾.
 
 然后快捷键 Shift+Ctrl+Alt+/，选择Registry，
 找到```compiler.automake.allow.when.app.running```选项打勾; 然后以后修改css,js,java类文件，IDEA就会自动make。
+
+### 11. 

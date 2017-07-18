@@ -17,7 +17,7 @@ Failed to execute goal org.apache.maven.plugins:maven-assembly-plugin:2.6:single
 
 ### 3.wagon-maven-plugin
 在pom.xml文件里面的```<build>```里面配置：
-```
+```xml
 <extensions>
     <extension>
         <groupId>org.apache.maven.wagon</groupId>
@@ -44,7 +44,7 @@ Failed to execute goal org.apache.maven.plugins:maven-assembly-plugin:2.6:single
 ### 4. Maven安装json-lib错误
 问题：
 项目需要使用json-lib，mvn.repository.com查找它的dependency时结果如下：
-```
+```xml
 <dependency>    
     <groupId>net.sf.json-lib</groupId>   
     <artifactId>json-lib</artifactId>    
@@ -52,9 +52,9 @@ Failed to execute goal org.apache.maven.plugins:maven-assembly-plugin:2.6:single
 </dependency>
 ```
 然而import时提示无法找到这个jar。
-解决办法：
-json-lib提供两个jdk版本的实现， json-lib-2.1-jdk13.jar和json-lib-2.1-jdk15.jar。把dependency的描述修改成下面的形式就就解决问题：
-```
+
+解决办法：json-lib提供两个jdk版本的实现， json-lib-2.1-jdk13.jar和json-lib-2.1-jdk15.jar。把dependency的描述修改成下面的形式就就解决问题：
+```xml
 <dependency>    
     <groupId>net.sf.json-lib</groupId>   
     <artifactId>json-lib</artifactId>    
@@ -87,7 +87,7 @@ Failed to execute goal com.spotify:docker-maven-plugin:0.4.13:build (build-image
 各种google之后，解决方法有两类：
 1.不用这个assembly插件，换一个更强大的tycho-p2-director-plugin[http://git.eclipse.org/c/tycho/org.eclipse.tycho.git/] ,但是需要重新学习了解的成本。
 2.更新maven的插件版本，从现有的2.6之后升级到3.0.0，但是：
-![这里写图片描述](http://img.blog.csdn.net/20170616020318935?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbG9uZWx5bWFub250aGV3YXk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![](http://img.blog.csdn.net/20170616020318935?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbG9uZWx5bWFub250aGV3YXk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 貌似很多时候，maven的插件报错不影响其功能使用。
 但是，这都不是完美的解决方案。
 终于找到一个更靠谱的解决方法：
@@ -98,7 +98,7 @@ https://github.com/downgoon/memcloud/issues/4
 ```
 ### 7. Eclipse导入maven项目报错：could not read pom.xml
 如图，IDE是Eclipse，导入GitHub上面git clone的maven项目时，报错：
-![这里写图片描述](http://img.blog.csdn.net/20170626223645738?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbG9uZWx5bWFub250aGV3YXk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![](http://img.blog.csdn.net/20170626223645738?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbG9uZWx5bWFub250aGV3YXk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 参考：http://blog.csdn.net/t123012009065/article/details/17333773
 意思是pom.xml有不能解析的配置项，把不能解析的配置修改过来即可。
 与其他pom文件对比，发现多了这一行：
@@ -107,13 +107,15 @@ https://github.com/downgoon/memcloud/issues/4
 
 ### 8. Eclipse解析pom.xml文件报错
 报错信息如此：
+
 Plugin execution not covered by lifecycle configuration with：org.jvnet.maven-antrun-extended-plugin:maven-antrun-extended-plugin:1.43:run(execution: unpack, phase: compile)
-![这里写图片描述](http://img.blog.csdn.net/20170626224914665?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbG9uZWx5bWFub250aGV3YXk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
-具体是配置和GWT相关。
-参考：
-http://stackoverflow.com/questions/14886380/generated-project-with-gwt-maven-plugin-eclipse
-http://stackoverflow.com/questions/8523737/why-am-i-receiving-a-plugin-execution-not-covered-by-lifecycle-configuration-wi
-如图所示大致解决方法：
+![](http://img.blog.csdn.net/20170626224914665?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbG9uZWx5bWFub250aGV3YXk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+
+具体是配置和GWT相关。参考：
+[1](http://stackoverflow.com/questions/14886380/generated-project-with-gwt-maven-plugin-eclipse)
+[2](http://stackoverflow.com/questions/8523737/why-am-i-receiving-a-plugin-execution-not-covered-by-lifecycle-configuration-wi)
+
+如图所示，可得知大致解决方法：
 1. 第一种会改变pom.xml文件，生产代码，不推荐提交更改；
 2. 更改自己本地开发坏境的配置，即将修改置于settings directory，建议。
 
@@ -206,7 +208,7 @@ http://stackoverflow.com/questions/8523737/why-am-i-receiving-a-plugin-execution
 ```
 也是只有下面一个配置项生效。
 
-###10.关于maven scope
+### 10.关于maven scope
 1.Compile（编译）
 compile是默认的范围.编译范围依赖在所有的classpath中可用，同时它们也会被打包.
 
@@ -250,7 +252,7 @@ eg: ```mvn help:describe -Dplugin=assembly```
 
 ### 14.Pom文件配置忽略测试失败
 当Maven遇到一个失败的单元测试/测试案例，它默认的行为是停止当前的构建。如果希望继续构建项目，即使Surefire插件遇到失败的单元测试，设置Surefire的**testFailureIgnore**这个配置属性为true。
-```
+```xml
 <plugin>
 	<groupId>org.apache.maven.plugins</groupId>
 	<artifactId>maven-surefire-plugin</artifactId>
@@ -268,6 +270,41 @@ eg: ```mvn help:describe -Dplugin=assembly```
 	<name>Human Readable Name for this Mirror.</name>
 	<url>http://maven.aliyun.com/nexus/content/groups/public</url>
 </mirror>
+```
+### 16. Maven与Gradle项目的互相转化
+Maven项目转Gradle项目, 也就是pom.xml文件转换为build.gradle文件。**前提条件**：radle项目目录结构保持跟Maven一样的约定，即/src/main/java。
+
+方法,在maven根目录（也就是pom.xml所在目录）下运行，**前提条件**安装Gradle 2.0以上：
+```batch
+gradle init --type pom
+```
+Gradle项目转Maven项目稍显麻烦，在build.gradle中增加以下内容(group,version可自行修改，artifactId默认为目录名称):
+```groovy
+apply plugin: 'java'
+apply plugin: 'maven'
+
+group = 'com.101tec'
+version = '0.7-dev'
+sourceCompatibility = 1.8
+```
+然后执行gradle install，成功后将在build\poms目录下生成pom-default.xml文件，把它复制到根目录下，改名成pom.xml即可.
+
+通过修改build.gradle也可以直接在根目录下生成pom.xml:
+```groovy
+task writeNewPom << {
+    pom {
+        project {
+            inceptionYear '2008'
+            licenses {
+                license {
+                    name 'The Apache Software License, Version 2.0'
+                    url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    distribution 'repo'
+                }
+            }
+        }
+    }.writeTo("$buildDir/pom.xml")
+}
 ```
 
 

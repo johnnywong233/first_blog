@@ -29,7 +29,7 @@ find . -name "*.jar"|awk '{print "jar -tvf "$1}'|sh|grep JsonStreamFactory
 ```
 实例图片：
 
- ![](img/find_class_in_jar.png)
+ ![](https://github.com/johnnywong233/first_blog/raw/gh-pages/_posts/img/find_class_in_jar.png)
 
 //mkdir -p: 创建目录, -p(parent)创建目录，若无父目录，则创建;
 

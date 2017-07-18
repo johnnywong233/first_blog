@@ -17,7 +17,7 @@ chrome://net-internals/#events&q=type:SPDY_SESSION%20is:active
 ###3.Chrome被劫持的解决方法
 笔记本在使用一段时间后（可能是访问某些个不良网站之后），chrome被（毒霸，360，百度的hao123等等）劫持，桌面上的Chrome快捷方式以及任务栏的快速启动栏都被劫持：即打开Chrome之后，主页变成毒霸等的主页。看着恶心。右键快捷方式——属性——目标，尝试修改为正常的路径，失败：
 
-![这里写图片描述](http://img.blog.csdn.net/20170623012937630?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbG9uZWx5bWFub250aGV3YXk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![](http://img.blog.csdn.net/20170623012937630?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbG9uZWx5bWFub250aGV3YXk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 笔记本上的唯一一款安全软件QQ管家启动也不能解决这个问题（是的，只有在需要的时候才打开QQ管家），最后的解决方法：
 
@@ -31,6 +31,6 @@ C:\Users\wajian\AppData\Local\Google\Chrome\Application\chrome.exe **--enable-ea
 我当前的 Chrome版本58.0.3029.110 (64-bit)不可如此安装，估计是Chrome考虑到安全/权限问题。
 同理，早先版本的Chrome如果被劫持，可以通过修改上面这种方法加以解决：把target里面的劫持商删除即可。
 
-![这里写图片描述](http://img.blog.csdn.net/20170623014155443?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbG9uZWx5bWFub250aGV3YXk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![](http://img.blog.csdn.net/20170623014155443?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbG9uZWx5bWFub250aGV3YXk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 现在Chrome推荐的extension安装方式当然就是在线安装，因为可以实时校验？另一种安装方式是下载.crx后缀名的插件，拖到extension页面chrome://extensions/，这种方式可以离线安装，不安全，估计后期Chrome也会不支持。
