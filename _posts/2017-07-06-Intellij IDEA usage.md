@@ -174,4 +174,23 @@ IDEA设置里面(Ctrl + Alt + S 快捷键打开settings——Build, Execution, D
 然后快捷键 Shift+Ctrl+Alt+/，选择Registry，
 找到```compiler.automake.allow.when.app.running```选项打勾; 然后以后修改css,js,java类文件，IDEA就会自动make。
 
-### 11. 
+### 11. nginx.conf文件编辑插件
+因工作需要配置nginx.conf文件，使用notepad ++或者sublime来编辑，不好用；用IntelliJ IDEA打开也是，没有提示，不能快捷注释，格式化啥的都不行。
+
+Google搜索"IntelliJ conf plugin"，发现开源的IntelliJ nginx 插件。 地址[nginx-support](https://plugins.jetbrains.com/plugin/4415-nginx-support)。安装过程与方式不多说。
+怎么配置？参考如图：
+
+![](https://github.com/johnnywong233/first_blog/raw/gh-pages/_posts/img/nginx_conf.png)
+
+配置好之后，启动nginx，命令行打印：
+```batch
+D:/Java/tool/nginx-1.13.1/nginx.exe -c D:/Java/tool/nginx-1.13.1/conf/nginx.conf -g pid 'D:/Java/tool/nginx-1.13.1/logs/nginx.pid';
+```
+Ctrl + Shift + N搜索nginx打开nginx.conf文件，可以看到高亮显示；输入gz会看到提示；正则配置location可以看到英文提示说明。
+更多功能有待研究。
+
+题外话，一开始不知道使用什么文件打开方式打开.conf文件，所以选择默认的text。在这一步，如果选择取消cancel的话，会弹出一个选择安装插件的提示框：
+
+![](https://github.com/johnnywong233/first_blog/raw/gh-pages/_posts/img/cong_file.png)
+
+然后就可以选择下载，虽然提示的PHP以及Scala并不是自己想要的。

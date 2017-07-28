@@ -13,7 +13,7 @@ mvn install:install-file -Dfile=neuroph-2.6.jar -DgroupId=org.neuroph -Dartifact
 Failed to execute goal org.apache.maven.plugins:maven-assembly-plugin:2.6:single (make-assembly) on project suite-demo-config-web: Execution make-assembly of goal org.apache.maven.plugins:maven-assembly-plugin:2.6:single failed: user id '3518522' is too big ( > 2097151 ). -> [Help 1]
 ```
 经过排查，发现问题是版本导致的，将目前使用的版本由2.6降到2.4，解决问题，深层原因暂时未知。
-参考链接：https://stackoverflow.com/questions/33943565/error-with-maven-build-with-assembly-plugin
+[参考链接](https://stackoverflow.com/questions/33943565/error-with-maven-build-with-assembly-plugin)
 
 ### 3.wagon-maven-plugin
 在pom.xml文件里面的```<build>```里面配置：
@@ -73,7 +73,7 @@ Failed to execute goal com.spotify:docker-maven-plugin:0.4.13:build (build-image
 ```
 初始时，把报错信息的焦点定位于ProcessingException以及No such file or directory，当然google不懂任何有用的信息。
 换个思路，google Retrying request to {}->unix://localhost:80。
-找到参考：https://github.com/spotify/docker-maven-plugin/issues/105
+找到[参考](https://github.com/spotify/docker-maven-plugin/issues/105)
 总结起来就是，你现在的Linux坏境docker已经出问题，maven插件需要借助于docker环境（如docker daemon等）；docker verion或者docker info提示有错，maven当然会执行失败。
 
 ### 6.maven-assembly-plugin
@@ -83,26 +83,28 @@ Failed to execute goal com.spotify:docker-maven-plugin:0.4.13:build (build-image
 ```
 [WARNING] Entry: hpas-7.4.3/bundles/system/layers/base/javax/servlet/api/v25/jboss-servlet-api_2.5_spec-1.0.1.Final.jar longer than 100 characters.
 ```
-网上有很多类似的故障如：http://stackoverflow.com/questions/9416511/tycho-shots-a-warning-when-my-entry-is-longer-than-100-chars
+网上有很多类似的故障如[1](http://stackoverflow.com/questions/9416511/tycho-shots-a-warning-when-my-entry-is-longer-than-100-chars)
 各种google之后，解决方法有两类：
-1.不用这个assembly插件，换一个更强大的tycho-p2-director-plugin[http://git.eclipse.org/c/tycho/org.eclipse.tycho.git/] ,但是需要重新学习了解的成本。
+1.不用这个assembly插件，换一个更强大的[tycho-p2-director-plugin](http://git.eclipse.org/c/tycho/org.eclipse.tycho.git/) ,但是需要重新学习了解的成本。
 2.更新maven的插件版本，从现有的2.6之后升级到3.0.0，但是：
 ![](http://img.blog.csdn.net/20170616020318935?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbG9uZWx5bWFub250aGV3YXk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 貌似很多时候，maven的插件报错不影响其功能使用。
 但是，这都不是完美的解决方案。
-终于找到一个更靠谱的解决方法：
-https://github.com/downgoon/memcloud/issues/4
+终于找到一个更靠谱的[解决方法](https://github.com/downgoon/memcloud/issues/4）
 在```< plugin>——<execution>——<configuration>```下面配置
-```
+```xml
 <tarLongFileMode>gnu</tarLongFileMode>
 ```
 ### 7. Eclipse导入maven项目报错：could not read pom.xml
 如图，IDE是Eclipse，导入GitHub上面git clone的maven项目时，报错：
+
 ![](http://img.blog.csdn.net/20170626223645738?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbG9uZWx5bWFub250aGV3YXk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
-参考：http://blog.csdn.net/t123012009065/article/details/17333773
-意思是pom.xml有不能解析的配置项，把不能解析的配置修改过来即可。
+
+[参考](http://blog.csdn.net/t123012009065/article/details/17333773)，意思是pom.xml有不能解析的配置项，把不能解析的配置修改过来即可。
 与其他pom文件对比，发现多了这一行：
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
+```
 去掉就行。wait but why？git clone的maven项目，怎么会有这种问题呢？还是一个高star的项目。
 
 ### 8. Eclipse解析pom.xml文件报错

@@ -94,7 +94,6 @@ java.lang.IllegalAccessError: tried to access method org.apache.poi.util.POILogg
     <version>1.3</version>
 </dependency>
 ```
-
 ooxml-schemas和poi-ooxml-schemas是两个不同的jar包。
 
 最后需要使用的apeche的poi jar包如下：
