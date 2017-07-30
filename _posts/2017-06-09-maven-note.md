@@ -289,7 +289,7 @@ group = 'com.101tec'
 version = '0.7-dev'
 sourceCompatibility = 1.8
 ```
-然后执行gradle install，成功后将在build\poms目录下生成pom-default.xml文件，把它复制到根目录下，改名成pom.xml即可.
+然后执行```gradle install```，成功后将在build\poms目录下生成pom-default.xml文件，把它复制到根目录下，改名成pom.xml即可.
 
 通过修改build.gradle也可以直接在根目录下生成pom.xml:
 ```groovy
@@ -309,9 +309,97 @@ task writeNewPom << {
 }
 ```
 
+### 17. Maven-resources-plugin插件使用
+乍一看，这个没有什么好写的；实际上，工作时也用过无数次。可是一次使用过程中，达不到想要的效果，copy过来的配置也完全没毛病。后来加上看起来可有可无的```${basedir}```搞定问题。
+```xml
+<plugin>
+    <artifactId>maven-resources-plugin</artifactId>
+    <version>3.0.1</version>
+    <executions>
+        <execution>
+            <id>copy-resources</id>
+            <phase>package</phase>
+            <goals>
+                <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+                <outputDirectory>${basedir}/docker/</outputDirectory>
+                <resources>
+                    <resource>
+                        <directory>${basedir}/target</directory>
+                        <includes>
+                            <include>*.jar</include>
+                        </includes>
+                    </resource>
+                </resources>
+            </configuration>
+        </execution>
+    </executions>
+</plugin>
+```
+注意其中的**${basedir}**，加上这个字段，提高```mvn install```成功率
 
+### 18. Maven-assembly-plugin插件使用
+```xml
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-assembly-plugin</artifactId>
+    <version>2.4</version>
+    <executions>
+        <execution>
+            <id>make-assembly</id>
+            <phase>package</phase>
+            <goals>
+                <goal>single</goal>
+            </goals>
+            <configuration>
+                <finalName>nginx-1.12.0</finalName>
+                <appendAssemblyId>false</appendAssemblyId>
+                <tarLongFileMode>gnu</tarLongFileMode>
+                <descriptors>
+                    <descriptor>docker/assembly-nginx.xml</descriptor>
+                </descriptors>
+                <archiverConfig>
+                    <directoryMode>0700</directoryMode>
+                    <defaultDirectoryMode>0700</defaultDirectoryMode>
+                    <fileMode>0700</fileMode>
+                </archiverConfig>
+                <outputDirectory>docker</outputDirectory>
+            </configuration>
+        </execution>
+    </executions>
+</plugin>
+```
+同时还需要配置一个assembly-nginx.xml文件，实现```tar czf nginx-1.12.0.tar.gz nginx-1.12.0/```这个压缩功能。
 
+assembly-nginx.xml如下，省略大部分fileSet以及file的配置：
+```xml
+<assembly>
+    <id>0</id>
+    <formats>
+        <format>tar.gz</format>
+    </formats>
+    <fileSets>
+        <fileSet>
+            <directory>${basedir}/docker/nginx-1.12.0/conf</directory>
+            <directoryMode>0700</directoryMode>
+            <outputDirectory>conf</outputDirectory>
+            <fileMode>0700</fileMode>
+            <includes>
+                <include>**/*</include>
+            </includes>
+        </fileSet>
+    </fileSets>
+    <files>
+        <file>
+            <source>${basedir}/docker/nginx-1.12.0/LICENSE</source>
+            <fileMode>0700</fileMode>
+        </file>
+    </files>
+</assembly>
+```
 
+### 19.
 
 
 # [Maven scope](http://ee-dreamer.com/?p=320)
