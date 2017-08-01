@@ -1,4 +1,5 @@
-###1.Chrome浏览器http抓包
+### 1.Chrome浏览器http抓包
+
 谷歌的 Chrome 浏览器自带一个功能强大的 HTTP 抓包工具，可以用于调试程序，监控 HTTP 信息交换。在浏览器地址栏输入 chrome://net-internals/#requests 即可进入。
 
 示例：
@@ -14,7 +15,7 @@ chrome://net-internals/#events&q=type:SPDY_SESSION%20is:active
 - postman rest api测试工具。可参考我的blog [postman使用](http://blog.csdn.net/lonelymanontheway/article/details/73320725)
 - Octotree 借助于此插件，你可以直接在Chrome侧边栏向打开文件夹一样的查看GitHub上面的项目；还可以下载需要的单个文件、文件夹，而不必git clone整个项目。
 
-###3.Chrome被劫持的解决方法
+### 3.Chrome被劫持的解决方法
 笔记本在使用一段时间后（可能是访问某些个不良网站之后），chrome被（毒霸，360，百度的hao123等等）劫持，桌面上的Chrome快捷方式以及任务栏的快速启动栏都被劫持：即打开Chrome之后，主页变成毒霸等的主页。看着恶心。右键快捷方式——属性——目标，尝试修改为正常的路径，失败：
 
 ![](http://img.blog.csdn.net/20170623012937630?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbG9uZWx5bWFub250aGV3YXk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
@@ -23,7 +24,7 @@ chrome://net-internals/#events&q=type:SPDY_SESSION%20is:active
 
 删除桌面的快捷方式以及解锁任务栏上面的Chrome，去Chrome的安装C:\Program Files (x86)\Google\Chrome\Application.exe，把快捷方式重新生成到桌面。
 
-###4.extension安装
+### 4.extension安装
 在较老版本Chrome（具体哪个版本号之前待考）安装后，在桌面的快捷图标，右键properties——shortcut，如果不是以**双引号**（现在是双引号，并且不允许修改其值）括起来的启动程序位置，则可以做如下修改。
 
 C:\Users\wajian\AppData\Local\Google\Chrome\Application\chrome.exe **--enable-easy-off-store-extension-install**。

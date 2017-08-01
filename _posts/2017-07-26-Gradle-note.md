@@ -22,7 +22,7 @@ def method1(int a,int b){
 Groovy中定义List：
 ```groovy
 task printList << { 
-    def numList =[1,2,3,4,5,6];
+    def numList =[1,2,3,4,5,6]
     println numList.getClass().name
     println numList[1]//访问第二个元素
     println numList[-1]//访问最后一个元素
@@ -33,7 +33,7 @@ task printList << {
 Groovy为List提供each方法来迭代，该方法接受一个闭包作为参数，可以访问List里的每个元素。
 ```groovy
 task printList << {
-    def numList =[1,2,3,4,5,6];
+    def numList =[1,2,3,4,5,6]
     println numList.getClass().name
 
     println numList[1]//访问第二个元素
@@ -108,3 +108,25 @@ noParamClosure ("test")  //报错
 ### Gradle
 构建，即build/make，根据输入信息然后干一堆事情，最后得到几个产出物（Artifact）。最简单的构建工具就是make。make就是根据Makefile文件中写的规则，执行对应的命令，然后得到目标产物。很难在xml中描述if{某条件成立，编译某文件}/else{编译其他文件}这样有不同条件的任务。
 
+常用命令：
+- gradle projects查看工程信息
+- gradle tasks查看任务信息
+- gradle task-name执行任务，比如gradle clean是执行清理任务，和make clean类似；gradle properties用来查看所有属性信息。
+
+Gradle工作流程
+
+![](https://github.com/johnnywong233/first_blog/raw/gh-pages/_posts/img/gradle_task.png)
+
+三个阶段：
+- 首先是初始化阶段，执行settings.gradle等
+- Initialization phase的下一个阶段是Configuration阶段。
+- Configuration阶段的目标是解析每个project中的build.gradle。在这两个阶段之间，可以通过API来添加一些定制化的Hook。
+- Configuration阶段后，整个build的project以及内部的Task关系就确定。Configuration会建立一个有向图来描述Task之间的依赖关系。可以添加HOOK，即当Task关系图建立好后，执行一些操作。
+- 最后一个阶段就是执行任务。后面还可以加Hook。
+
+[文档](https://docs.gradle.org/current/dsl/)
+
+Gradle主要有三种对象，和三种不同的脚本文件对应，在gradle执行时，会将脚本转换成对应的对端：
+- Gradle对象：执行gradle xxx或者什么的时候，gradle会从默认的配置脚本中构造出一个Gradle对象。在整个执行过程中，只有这么一个对象。Gradle对象的数据类型就是Gradle。一般很少去定制这个默认的配置脚本。
+- Project对象：每一个build.gradle会转换成一个Project对象。
+- Settings对象：每一个settings.gradle都会转换成一个Settings对象。
