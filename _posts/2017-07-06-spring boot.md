@@ -1,10 +1,10 @@
-# 关于spring Boot的一些思考
+## 关于spring Boot的一些思考
 - spring boot v.s. spring
 - spring boot的优缺点
 
-##《JavaEE开发的颠覆者 Spring Boot实战》读书笔记
+## 《JavaEE开发的颠覆者 Spring Boot实战》读书笔记
 
-###第一章
+### 第一章
 1.spring发展阶段
 
 - xml配置；
@@ -148,14 +148,61 @@ InternalResourcesViewResolver通过设置前缀、后缀以及控制器中的方
 JHipster是一个代码生成器，可以用来生成基于sb和AngularJS的项目：安装Node.js, git, Yeoman generator, JHipster, Bower, Grunt, 命令：yo jhipster
 
 
+## 零碎知识点
+启动jar包命令：
+```batch
+java -jar  target/*.jar
+```
+指定profile：
+```batch
+java -jar  target/*.jar spring.profiles.active=dev
+java -jar target/*.jar --active.profile=prod
+```
+这种方式，只要控制台关闭，服务就不能访问。在后台运行的方式来启动：
+```batch
+nohup java -jar target/*.jar &
+```
+启动的时候设置jvm参数：
+```batch
+java -Xms10m -Xmx80m -jar app.jar &
+```
+spring boot内嵌tomcat的配置项：
+- 设置内嵌Tomcat的最大线程数:
+server.tomcat.max-threads=1000
+
+- 设置内嵌Tomcat的编码
+server.tomcat.uri-encoding = UTF-8
+
+- 其他
+```yaml
+server.tomcat.accesslog.enabled=false # Enable access log.
+server.tomcat.accesslog.pattern=common # Format pattern for access logs.
+server.tomcat.accesslog.prefix=access_log # Log file name prefix.
+server.tomcat.accesslog.rename-on-rotate=false # Defer inclusion of the date stamp in the file name until rotate time.
+server.tomcat.accesslog.suffix=.log # Log file name suffix.
+server.tomcat.background-processor-delay=30 # Delay in seconds between the invocation of backgroundProcess methods.
+server.tomcat.basedir= # Tomcat base directory. If not specified a temporary directory will be used.
+server.tomcat.internal-proxies=10\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}|\\
+        192\\.168\\.\\d{1,3}\\.\\d{1,3}|\\
+        169\\.254\\.\\d{1,3}\\.\\d{1,3}|\\
+        127\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}|\\
+        172\\.1[6-9]{1}\\.\\d{1,3}\\.\\d{1,3}|\\
+        172\\.2[0-9]{1}\\.\\d{1,3}\\.\\d{1,3}|\\
+        172\\.3[0-1]{1}\\.\\d{1,3}\\.\\d{1,3} # regular expression matching trusted IP addresses.
+server.tomcat.max-threads=0 # Maximum amount of worker threads.
+server.tomcat.min-spare-threads=0 # Minimum amount of worker threads.
+server.tomcat.port-header=X-Forwarded-Port # Name of the HTTP header used to override the original port value.
+server.tomcat.protocol-header= # Header that holds the incoming protocol, usually named "X-Forwarded-Proto".
+server.tomcat.protocol-header-https-value=https # Value of the protocol header that indicates that the incoming request uses SSL.
+server.tomcat.redirect-context-root= # Whether requests to the context root should be redirected by appending a / to the path.
+server.tomcat.remote-ip-header= # Name of the http header from which the remote ip is extracted. For instance `X-FORWARDED-FOR`
+server.tomcat.uri-encoding=UTF-8 # Character encoding to use to decode the URI.
+```
 
 
-
-
-
-
-
-
+学习参考blog：
+- [1](https://github.com/lianggzone/springboot-action)
+- [2](https://github.com/ityouknow/spring-boot-examples)
 
 
 

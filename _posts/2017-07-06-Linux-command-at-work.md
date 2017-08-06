@@ -53,25 +53,27 @@ sed -i '4iabc' demo.txt
 
 
 //echo追加
-
 ```
 echo "append content" >> demo.txt
-
 echo "overwriten content" > demo.txt
 ```
-
 一个问题，单纯的echo命令是不是不能实现文本的指定行追加内容？
 
 
 
 ### Linux配置JDK, MAVEN
+习惯通过FileZilla或者MobaXTerm把本地下载的OpenJDK，即zulu-linux-x64.tar.gz导入Linux开发坏境，然后命令```tar zxvf zulu-linux-x64.tar.gz```, 编辑Linux下的环境变量文件，即profile文件，```vim /etc/profile```，Ctrl + End，去文件末尾，添加：
+```
+JAVA_HOME=/root/JDK/zulu-linux-x64
+export PATH=$PATH:${JAVA_HOME}/bin:${MAVEN_HOME}/bin:
+```
 
-习惯通过FileZilla或者M哦吧XTerm把本地下载的OpenJDK，即zulu-linux-x64.tar.gz导入Linux开发坏境，然后命令```tar zxvf zulu-linux-x64.tar.gz```, 编辑Linux下的环境变量文件，即profile文件，```vim /etc/profile```，Ctrl + End，去文件末尾，添加：
+MAVEN配置同次。生效：```source /etc/profile```
 
-```JAVA_HOME=/root/JDK/zulu-linux-x64
+### FTP权限账户
+在使用wget命令去下载ftp的资源时，用户名密码都没有错，路径也没有问题，但是一直报错找不到文件。
+后来才知道，使用的是不同的一套用户名/密码，从而看到不一样的目录以及文件，具备不同的权限：
+```wget ftp://cmfshare:cmfshare@16.155.193.1/home/README.md```  
+![](https://github.com/johnnywong233/first_blog/raw/gh-pages/_posts/img/ftp_permission.png)  
+并且wget不能下载带空格的文件.否则报错。
 
-export PATH=$PATH:${JAVA_HOME}/bin:${MAVEN_HOME}/bin:```
-
-MAVE配置同次。生效：```source /etc/profile```
-
-### 

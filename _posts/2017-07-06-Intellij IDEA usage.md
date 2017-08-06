@@ -194,3 +194,14 @@ Ctrl + Shift + N搜索nginx打开nginx.conf文件，可以看到高亮显示；�
 ![](https://github.com/johnnywong233/first_blog/raw/gh-pages/_posts/img/cong_file.png)
 
 然后就可以选择下载，虽然提示的PHP以及Scala并不是自己想要的。
+
+### 12.Ctrl + Atl + L
+格式化代码的快捷键不可用，原因是这个快捷键被其他应用程序占用。
+下载[Hotkey Commander](http://hkcmdr.anymania.com/),一款Windows Hotkey Explorer程序可以查看所有快捷键的程序和进程。
+
+       
+### 13. Ctrl + Shift + R
+IDEA的全局搜索替换快捷键功能不支持多种类型文件的匹配？  
+![](https://github.com/johnnywong233/first_blog/raw/gh-pages/_posts/img/file_type_filter.png)
+
+
