@@ -77,3 +77,10 @@ MAVEN配置同次。生效：```source /etc/profile```
 ![](https://github.com/johnnywong233/first_blog/raw/gh-pages/_posts/img/ftp_permission.png)  
 并且wget不能下载带空格的文件.否则报错。
 
+### exports文件
+Linux下的exports文件，
+```batch
+vim /etc/exports
+/var/vols/itom/core *(rw,sync,anonuid=1999,anongid=1999,all_squash)
+```
+修改生效的方法: ```exportfs -ra```
