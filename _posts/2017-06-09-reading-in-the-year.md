@@ -14,6 +14,12 @@
 - go语言编程(DOING)
 - 我的职业是前端工程师(DONE)
 - Spring Boot实战(DOING)
+- 微服务架构与实践 王磊著(DONE)
+- SpringBoot揭秘+快速构建微服务体系 王福强著(DONE)
+- 分布式服务架构：原理、设计与实战()
+- 循序渐进学docker()
+- Docker进阶与实战.华为Docker实践小组()
+- Docker技术入门与实战(第2版)()
 
 # 非技术：
 - 爱情没那么美好(DONE)
